@@ -27,8 +27,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className='top-nav'>
+        <div className='top-navbar'>
           <h1>Albums List</h1>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control search-album" type="search" placeholder="Search for an album"/>
+          </form>
         </div>
         <div className='container'>
         {this.state.albumList.map((album, i) => (

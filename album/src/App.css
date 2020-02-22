@@ -54,7 +54,7 @@ h1 {
   float: left;
 }
 
-.top-nav{
+.top-navbar{
   width: 100%;
   height: 70px;
   background-color: #36454f;
@@ -62,4 +62,12 @@ h1 {
 
 .container{
   margin-top: 10px;
+}
+
+.search-album{
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  top: 20px;
+  right: 100px;
 }
