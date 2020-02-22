@@ -26,30 +26,27 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Albums</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">UserID</th>
-              <th scope="col">Album ID</th>
-              <th scope="col">Album Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.albumList.map((album, i) => (
-              <tr
-                className="album-card"
-                key={i + 1}
+      <div>
+        <div className='top-nav'>
+          <h1>Albums List</h1>
+        </div>
+        <div className='container'>
+        {this.state.albumList.map((album, i) => (
+          <div className="card" key={i + 1}>
+            <div className="card-body">
+              <h5 className="card-title">{album.title}</h5>
+              <p className="card-text">Album Id: {album.id}</p>
+              <p className="card-text">Album Id: {album.id}</p>
+              <p
+                className="btn btn-primary"
                 onClick={() => this.openAlbum(i)}
               >
-                <td>{album.userId}</td>
-                <td>{album.id}</td>
-                <td>{album.title}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                View Album
+              </p>
+            </div>
+          </div>
+        ))}
+        </div>
       </div>
     );
   }
