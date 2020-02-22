@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import Album from './Album';
+import './App.css'
 
   class App extends Component {
     componentDidMount() {
@@ -19,14 +20,19 @@ import React, { Component } from 'react';
       console.log(this.state.albumList);
       return (
         <div>
-          <h1>Hello world</h1>
-          {this.state.albumList.map(album => 
-            <div key={album.id}>
-              <span>{album.userid}</span>
-              <span>{album.id}</span>
-              <span>{album.title}</span>
-            </div>
-          )}
+          <h1>Albums</h1>
+          <table>
+          <th>UserID</th>
+          <th>Album ID</th>
+          <th>Album Name</th>
+            {this.state.albumList.map(album => 
+              <tr className='album-card' key={album.id}>
+                <td>{album.userId}</td>
+                <td>{album.id}</td>
+                <td>{album.title}</td>
+              </tr>
+            )}
+          </table>
         </div>
       );
       
