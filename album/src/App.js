@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css'
 
   class App extends Component {
-    componentDidMount() {
+    componentWillMount() {
       fetch('https://jsonplaceholder.typicode.com/albums')
       .then(res => res.json())
       .then((data) => {
@@ -19,12 +19,12 @@ import './App.css'
     render() {
       console.log(this.state.albumList);
       return (
-        <div>
+        <div className="container">
           <h1>Albums</h1>
-          <table>
-          <th>UserID</th>
-          <th>Album ID</th>
-          <th>Album Name</th>
+          <table className="table">
+          <th scope='col'>UserID</th>
+          <th scope='col'>Album ID</th>
+          <th scope='col'>Album Name</th>
             {this.state.albumList.map(album => 
               <tr className='album-card' key={album.id}>
                 <td>{album.userId}</td>
