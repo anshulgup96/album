@@ -36,18 +36,10 @@
     transform: rotate(360deg);
   }
 }
-/* 
-.album-card{
-  margin: 3px;
-}
 
-
-td{
-  padding: 10px;
+body{
+  background-color: lightsteelblue;
 }
-th{
-  padding: 10px;
-} */
 
 .table{
   text-align: center;
