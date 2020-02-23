@@ -11,7 +11,8 @@ class App extends Component {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then(res => res.json())
       .then(data => {
-        this.setState({ albumList: data });
+        this.setState({ searchList: data });
+        this.albumList = data;
       });
   }
 
@@ -25,8 +26,8 @@ class App extends Component {
   }
 
   state = {
-    albumList: [],
-    pageNumber: 1
+    searchList: [],
+    pageNumber: 2
   };
 
   render() {
@@ -43,21 +44,28 @@ class App extends Component {
           </form>
         </div>
         <div className="container">
-          {this.state.albumList.map((album, i) => (
-            <div className="card" key={i + 1}>
-              <div className="card-body">
-                <h5 className="card-title">{album.title}</h5>
-                <p className="card-text">Album Id: {album.id}</p>
-                <p className="card-text">Album Id: {album.id}</p>
-                <p
-                  className="btn btn-primary"
-                  onClick={() => this.openAlbum(i)}
-                >
-                  View Album
-                </p>
-              </div>
-            </div>
-          ))}
+          {this.state.searchList.map((album, i) => {
+            if (
+              i < this.state.pageNumber * 9 &&
+              i >= (this.state.pageNumber - 1) * 9
+            ) {
+              return (
+                <div className="card" key={i + 1}>
+                  <div className="card-body">
+                    <h5 className="card-title">{album.title}</h5>
+                    <p className="card-text">Album Id: {album.id}</p>
+                    <p className="card-text">Album Id: {album.id}</p>
+                    <p
+                      className="btn btn-primary"
+                      onClick={() => this.openAlbum(i)}
+                    >
+                      View Album
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     );
