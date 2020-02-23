@@ -27,7 +27,7 @@ class App extends Component {
 
   state = {
     searchList: [],
-    pageNumber: 2
+    pageNumber: 1
   };
 
   render() {
@@ -46,8 +46,8 @@ class App extends Component {
         <div className="container">
           {this.state.searchList.map((album, i) => {
             if (
-              i < this.state.pageNumber * 9 &&
-              i >= (this.state.pageNumber - 1) * 9
+              i < this.state.pageNumber * 6 &&
+              i >= (this.state.pageNumber - 1) * 6
             ) {
               return (
                 <div className="card" key={i + 1}>
@@ -66,6 +66,25 @@ class App extends Component {
               );
             }
           })}
+          <div className="page-number">
+            <button
+              className="inline"
+              onClick={() => {
+                this.setState({ pageNumber: this.state.pageNumber - 1 });
+              }}
+            >
+              -
+            </button>
+            <p className="inline">{this.state.pageNumber}</p>
+            <button
+              className="inline"
+              onClick={() => {
+                this.setState({ pageNumber: this.state.pageNumber + 1 });
+              }}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
     );

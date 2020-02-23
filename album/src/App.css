@@ -73,8 +73,12 @@ body {
   right: 105px;
 }
 
-.pageination {
+.page-number {
   color: white;
-  display: inline;
-  border: 1px solid white;
+  float: left;
+  padding-left: 45%;
+}
+
+.inline {
+  display: inline-block;
 }
