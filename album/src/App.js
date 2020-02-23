@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import "./App.css";
 // import Pagination from "./Pagination";
 
-// Implement pagination
-// Implement search functionality
-
 class App extends Component {
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/albums")
@@ -26,23 +23,28 @@ class App extends Component {
   }
 
   newDisplay(e) {
-    console.log(e.target.value);
+    if (e.target.value === "") {
+      this.setState({ status: 0 });
+    } else {
+      this.setState({ status: 1 });
+    }
+    this.setState({ pageNumber: 1 });
     const checkPrefix = album => album.title.startsWith(e.target.value);
     const newList = this.albumList.filter(checkPrefix);
     this.setState({ searchList: newList });
-    console.log(newList);
   }
 
   state = {
     searchList: [],
-    pageNumber: 1
+    pageNumber: 1,
+    status: 0
   };
 
   render() {
     return (
       <div>
         <div className="top-navbar">
-          <h1 className="page-title">Albums List</h1>
+          <h1 className="page-title">Albums</h1>
           <form className="form-inline my-2 my-lg-0">
             <input
               className="form-control search-album"
@@ -86,7 +88,7 @@ class App extends Component {
             >
               -
             </button>
-            <p className="inline">{this.state.pageNumber}</p>
+            <div className="inline">{this.state.pageNumber}</div>
             <button
               className="inline"
               onClick={() => {

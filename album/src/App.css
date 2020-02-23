@@ -76,9 +76,15 @@ body {
 .page-number {
   color: white;
   float: left;
-  padding-left: 45%;
+  padding-left: 43%;
+  margin: 20px;
+  position: absolute;
+  top: 620px;
+  right: 560px;
 }
 
 .inline {
   display: inline-block;
+  width: 40px;
+  text-align: center;
 }
