@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import Album from './Album';
 import "./App.css";
+// import Pagination from "./Pagination";
 
 // Implement pagination
 // Implement search functionality
@@ -24,17 +25,18 @@ class App extends Component {
   }
 
   state = {
-    albumList: []
+    albumList: [],
+    pageNumber: 1
   };
 
   render() {
     return (
       <div>
         <div className="top-navbar">
-          <h1>Albums List</h1>
-          <form class="form-inline my-2 my-lg-0">
+          <h1 className="page-title">Albums List</h1>
+          <form className="form-inline my-2 my-lg-0">
             <input
-              class="form-control search-album"
+              className="form-control search-album"
               type="search"
               placeholder="Search for an album"
             />
