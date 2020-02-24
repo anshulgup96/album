@@ -23,12 +23,13 @@ class App extends Component {
   }
 
   newDisplay(e) {
-    if (e.target.value === "") {
-      this.setState({ status: 0 });
-    } else {
-      this.setState({ status: 1 });
-    }
+    // if (e.target.value === "") {
+    //   this.setState({ status: 0 });
+    // } else {
+    //   this.setState({ status: 1 });
+    // }
     this.setState({ pageNumber: 1 });
+
     const checkPrefix = album => album.title.startsWith(e.target.value);
     const newList = this.albumList.filter(checkPrefix);
     this.setState({ searchList: newList });
@@ -62,6 +63,7 @@ class App extends Component {
               placeholder="Search for an album"
               onChange={event => {
                 this.newDisplay(event);
+                //example
               }}
             />
           </form>
