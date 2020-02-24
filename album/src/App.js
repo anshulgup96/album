@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 // import Album from './Album';
 import "./App.css";
+import Navbar from "./Navbar";
 // import Pagination from "./Pagination";
+import Card from "./Card";
+import Pagination from "./Pagination";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.createNewSearchList = this.createNewSearchList.bind(this);
+    this.openAlbum = this.openAlbum.bind(this);
+    this.pageDown = this.pageDown.bind(this);
+    this.pageUp = this.pageUp.bind(this);
+  }
+
+  //Loads all the albums on mounting of app component
+
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then(res => res.json())
@@ -12,6 +25,8 @@ class App extends Component {
         this.albumList = data;
       });
   }
+
+  //If view album button is clicked, gets album information
 
   openAlbum(key) {
     key = key + 1;
@@ -22,53 +37,36 @@ class App extends Component {
       });
   }
 
-  createNewSearchList(e) {
-    // if (e.target.value === "") {
-    //   this.setState({ status: 0 });
-    // } else {
-    //   this.setState({ status: 1 });
-    // }
-    this.setState({ pageNumber: 1 });
+  //Button does nothing if no more albums to show - pageDown and pageUp
 
+  pageDown(e) {
+    if (this.state.pageNumber > 1) {
+      this.setState({ pageNumber: this.state.pageNumber - 1 });
+    }
+  }
+
+  pageUp(e) {
+    if (this.state.pageNumber < this.state.searchList.length / 6) {
+      this.setState({ pageNumber: this.state.pageNumber + 1 });
+    }
+  }
+
+  createNewSearchList(e) {
+    this.setState({ pageNumber: 1 });
     const checkPrefix = album => album.title.startsWith(e.target.value);
     const newList = this.albumList.filter(checkPrefix);
     this.setState({ searchList: newList });
   }
 
-  isSearch() {
-    let noSearch = "Showing all results";
-    let searchResult = "Showing search results";
-    if (this.state.status === 0) {
-      return noSearch;
-    } else {
-      return searchResult;
-    }
-  }
-
   state = {
     searchList: [],
-    pageNumber: 1,
-    status: 0
+    pageNumber: 1
   };
 
   render() {
     return (
       <div>
-        <div className="top-navbar">
-          <h1 className="page-title">Albums</h1>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control search-album"
-              type="search"
-              placeholder="Search for an album"
-              onChange={event => {
-                this.createNewSearchList(event);
-                //example
-              }}
-            />
-          </form>
-        </div>
-        {/* <p>{() => this.isSearch()}</p> */}
+        <Navbar createNewSearchList={this.createNewSearchList} />
         <div className="container">
           {this.state.searchList.map((album, i) => {
             if (
@@ -76,41 +74,21 @@ class App extends Component {
               i >= (this.state.pageNumber - 1) * 6
             ) {
               return (
-                <div className="card" key={album.id}>
-                  <div className="card-body">
-                    <h5 className="card-title">{album.title}</h5>
-                    <p className="card-text">User ID: {album.userId}</p>
-                    <p className="card-text">Album Id: {album.id}</p>
-                    <p
-                      className="btn btn-primary"
-                      onClick={() => this.openAlbum(i)}
-                    >
-                      View Album
-                    </p>
-                  </div>
-                </div>
+                <Card
+                  openAlbum={this.openAlbum}
+                  title={album.title}
+                  id={album.id}
+                  userId={album.userId}
+                  key={album.id}
+                />
               );
             }
           })}
-          <div className="page-number">
-            <button
-              className="inline"
-              onClick={() => {
-                this.setState({ pageNumber: this.state.pageNumber - 1 });
-              }}
-            >
-              -
-            </button>
-            <div className="inline">{this.state.pageNumber}</div>
-            <button
-              className="inline"
-              onClick={() => {
-                this.setState({ pageNumber: this.state.pageNumber + 1 });
-              }}
-            >
-              +
-            </button>
-          </div>
+          <Pagination
+            pageDown={this.pageDown}
+            pageUp={this.pageUp}
+            pageNumber={this.state.pageNumber}
+          />
         </div>
       </div>
     );
