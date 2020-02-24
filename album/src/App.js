@@ -34,6 +34,16 @@ class App extends Component {
     this.setState({ searchList: newList });
   }
 
+  isSearch() {
+    let noSearch = "Showing all results";
+    let searchResult = "Showing search results";
+    if (this.state.status === 0) {
+      return noSearch;
+    } else {
+      return searchResult;
+    }
+  }
+
   state = {
     searchList: [],
     pageNumber: 1,
@@ -56,6 +66,7 @@ class App extends Component {
             />
           </form>
         </div>
+        {/* <p>{() => this.isSearch()}</p> */}
         <div className="container">
           {this.state.searchList.map((album, i) => {
             if (
