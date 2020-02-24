@@ -22,7 +22,7 @@ class App extends Component {
       });
   }
 
-  newDisplay(e) {
+  createNewSearchList(e) {
     // if (e.target.value === "") {
     //   this.setState({ status: 0 });
     // } else {
@@ -62,7 +62,7 @@ class App extends Component {
               type="search"
               placeholder="Search for an album"
               onChange={event => {
-                this.newDisplay(event);
+                this.createNewSearchList(event);
                 //example
               }}
             />
@@ -76,10 +76,10 @@ class App extends Component {
               i >= (this.state.pageNumber - 1) * 6
             ) {
               return (
-                <div className="card" key={i + 1}>
+                <div className="card" key={album.id}>
                   <div className="card-body">
                     <h5 className="card-title">{album.title}</h5>
-                    <p className="card-text">Album Id: {album.id}</p>
+                    <p className="card-text">User ID: {album.userId}</p>
                     <p className="card-text">Album Id: {album.id}</p>
                     <p
                       className="btn btn-primary"
