@@ -3,11 +3,7 @@ import "./App.css";
 
 export default class Card extends Component {
   render() {
-    let { title } = this.props;
-    let { id } = this.props;
-    let { userId } = this.props;
-    let { openAlbum } = this.props;
-
+    const { title, id, userId, openAlbum } = this.props;
     return (
       <div>
         <div className="card" key={id}>

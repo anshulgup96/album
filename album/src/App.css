@@ -89,5 +89,24 @@ body {
   text-align: center;
 }
 
-.view-album-button {
+.album-photo {
+  position: absolute;
+  bottom: 50px;
+  width: 150px;
+  left: 50px;
+}
+
+.photo-card {
+  width: 300px;
+  float: left;
+  margin: 10px;
+  color: white;
+  height: 300px;
+  position: relative;
+}
+
+.btn {
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
 }
